@@ -8,11 +8,8 @@ obj-m := dmx_usb.o
 
 else
 
-KDIR	:= /lib/modules/$(shell uname -r)/build
-PWD	:= $(shell pwd)
-
-default:
-	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+default modules all:
+	$(MAKE) -C $(KERNELPATH) SUBDIRS=$(PWD) modules
 	gcc -O2 -pipe -Wall dmx_usb_test.c -o dmx_usb_test
 
 endif
